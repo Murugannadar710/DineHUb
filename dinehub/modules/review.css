@@ -1,0 +1,91 @@
+/* review.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #3a0a2b, #6b0f2d, #1b1b1b); /* Maroon, Burgundy, Black gradient */
+    color: #ccc;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-out; /* Fade-in effect */
+}
+
+h1 {
+    color: linear-gradient(45deg, #ffeb3b, #ffc107); /* Yellow gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGlow 1.5s infinite; /* Glowing text effect */
+}
+
+.review {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    transition: background 0.3s ease;
+}
+
+.review:hover {
+    background: rgba(255, 255, 255, 0.1); /* Subtle highlight effect on hover */
+}
+
+.review h3 {
+    margin: 0 0 10px;
+    color: #ffeb3b; /* Yellow text color */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Shadow effect for better readability */
+}
+
+.review p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.review small {
+    color: #666;
+}
+
+.back-home {
+    margin-top: 20px;
+}
+
+.back-home-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(45deg, #ff6f61, #d55d4a); /* Button gradient */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 2s infinite; /* Pulsing animation */
+}
+
+.back-home-btn:hover {
+    background: linear-gradient(45deg, #d55d4a, #ff6f61);
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(255, 255, 0, 0.7); }
+    100% { text-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

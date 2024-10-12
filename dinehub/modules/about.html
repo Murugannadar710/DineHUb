@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - DineHub</title>
+    <style>
+      /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #3a0a2b, #6b0f2d, #1b1b1b); /* Maroon, Burgundy, Black gradient */
+    color: #ccc; /* Light text color */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+header {
+    background: linear-gradient(135deg, #5c0a20, #8c2a22); /* Maroon to burgundy gradient */
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    transition: background 0.5s ease;
+}
+
+header:hover {
+    background: linear-gradient(135deg, #8c2a22, #5c0a20); /* Reverse gradient on hover */
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.4rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #ffeb3b; /* Yellow gradient for hover */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0;
+    transition: transform 0.3s ease;
+}
+
+.nav-links:hover {
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffeb3b; /* Light yellow for hover effect */
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8); /* Glow effect on hover */
+}
+
+main {
+    padding: 40px 0;
+    text-align: center;
+    animation: fadeIn 1s ease-out; /* Fade-in effect */
+}
+
+h1 {
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, #ffeb3b, #ffc107); /* Yellow gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideIn 1s ease-out, textGlow 1.5s infinite; /* Slide-in and glowing text effects */
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards; /* Fade-in-up effect */
+}
+
+p:nth-child(2) {
+    animation-delay: 0.5s; /* Staggered animation */
+}
+
+p:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff6f61, #d55d4a); /* Button gradient */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 2s infinite; /* Pulsing animation */
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #d55d4a, #ff6f61);
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+footer {
+    background: linear-gradient(135deg, #5c0a20, #8c2a22); /* Maroon to burgundy gradient */
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    transition: background 0.5s ease;
+}
+
+footer:hover {
+    background: linear-gradient(135deg, #8c2a22, #5c0a20); /* Reverse gradient on hover */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(255, 255, 0, 0.7); }
+    100% { text-shadow: 0 0 10px rgba(255, 255, 0, 0.5); }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1><a href="index.html" class="logo">DineHub</a></h1>
+                <ul class="nav-links">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>About DineHub</h1>
+            <p>
+                DineHub is your premier online restaurant management system designed to streamline and enhance the dining experience for both customers and restaurant operators. Our platform offers a comprehensive suite of tools to manage reservations, menus, orders, and staff, ensuring a smooth and efficient operation for any dining establishment.
+            </p>
+            <p>
+                With DineHub, restaurants can effortlessly organize their menus, handle customer orders, and track table reservations from a single, intuitive interface. Our system is built with flexibility in mind, allowing for customization to meet the unique needs of different dining environments, from small bistros to large fine-dining establishments.
+            </p>
+            <p>
+                At DineHub, we are committed to providing exceptional service and continuous improvements to our platform. Our goal is to empower restaurants with the tools they need to deliver a memorable dining experience, improve operational efficiency, and foster strong relationships with their customers.
+            </p>
+
+
+
+            <br>
+            <br>
+            <a href="home.html" class="btn">Back to Home</a>
+        </div>
+    </main>
+</body>
+</html>

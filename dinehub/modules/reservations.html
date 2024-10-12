@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a0a1c, #000000); /* Burdenfy and Black gradient */
+            color: #290404b3; /* Light text color for better contrast */
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #e2d9d9;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgb(255, 255, 255);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: linear-gradient(135deg, #d58b9f, #be55cc) ;          
+             border-radius: 8px;
+            padding: 20px;
+            width: 48%;
+            box-shadow: 0 2px 4px rgb(255, 255, 255);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #000000;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: linear-gradient(135deg, #4a0a1c, #000000); /* Orange button background */
+            color: #000000; /* White text */
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color:#4a0a1c; /* Darker orange on hover */
+        }
+
+        #reservation-results, #reminder-results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reservations</h1>
+        <div class="card-container">
+            <div class="card">
+                <h2>Table Reservation</h2>
+                <form id="reservation-form" action="handle_reservations.php" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    
+                    <label for="time">Time:</label>
+                    <input type="time" id="time" name="time" required>
+                    
+                    <label for="guests">Number of Guests:</label>
+                    <input type="number" id="guests" name="guests" required>
+                    
+                    <button type="submit">Reserve Table</button>
+                </form>
+                <div id="reservation-results"></div>
+            </div>
+
+            <div class="card">
+                <h2>Set Reminders</h2>
+                <form id="reminder-form" action="handle_reminders.php" method="POST">
+                    <label for="reminder-date">Reminder Date:</label>
+                    <input type="date" id="reminder-date" name="reminder-date" required>
+                    
+                    <label for="reminder-time">Reminder Time:</label>
+                    <input type="time" id="reminder-time" name="reminder-time" required>
+                    
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    
+                    <button type="submit">Set Reminder</button>
+                </form>
+                <div id="reminder-results"></div>
+            </div>
+        </div>
+        <button type="button" onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        document.getElementById('reservation-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            fetch('handle_reservation.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById('reservation-results').innerHTML = `<p>Reservation Confirmed: ${data.name} on ${data.date} at ${data.time} for ${data.guests} guests.</p>`;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('reminder-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            fetch('handle_reminder.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById('reminder-results').innerHTML = `<p>Reminder Set: ${data.message} on ${data['reminder-date']} at ${data['reminder-time']}.</p>`;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

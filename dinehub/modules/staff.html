@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Staff - DineHub</title>
+    <style>
+       /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a, #400000); /* Maroon, Burgundy, Black gradient */
+    color: #fff;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(135deg, #a70000, #8b0000); /* Maroon to Dark Red gradient */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 26px;
+    color: #ffeb3b; /* Yellow gradient font */
+    text-decoration: none;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ffeb3b, #ffc107);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #ffeb3b; /* Yellow gradient font */
+    text-decoration: none;
+    font-size: 18px;
+    background: linear-gradient(45deg, #ffeb3b, #ffc107);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+main {
+    padding: 50px 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffeb3b; /* Yellow gradient font */
+    margin-bottom: 40px;
+    font-size: 3rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.staff-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-rows: repeat(2, auto); /* 2 rows */
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.staff-card {
+    background: #222;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 400px; /* Adjust height to make cards vertically rectangular */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #3b0a45, #6a0d1b); /* Maroon and Burgundy gradient */
+}
+
+.staff-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+}
+
+.staff-image {
+    width: 100%;
+    height: 60%; /* Adjust height to fit within the card */
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.staff-card:hover .staff-image {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+.staff-info {
+    padding: 20px;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.staff-card:hover .staff-info {
+    opacity: 0.9;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.staff-info h2 {
+    margin-bottom: 15px;
+    color: #ffeb3b; /* Yellow gradient font */
+    font-size: 1.6rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.staff-info p {
+    margin-bottom: 20px;
+    color: #ddd;
+    font-size: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #ff6f61;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: #d55d4a;
+    transform: translateY(-3px);
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">DineHub</a>
+            <ul class="nav-links">
+                <li><a href="about.html">About</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Meet Our Staff</h1>
+        <div class="staff-container">
+            <div class="staff-card">
+                <img src="staff1.jpg" alt="Staff Member 1" class="staff-image">
+                <div class="staff-info">
+                    <h2>John Doe</h2>
+                    <p>John is our head chef with over 15 years of experience in creating delicious dishes. His passion for cooking is reflected in every meal.</p>
+                </div>
+            </div>
+            <div class="staff-card">
+                <img src="staff2.jpg" alt="Staff Member 2" class="staff-image">
+                <div class="staff-info">
+                    <h2>Jane Smith</h2>
+                    <p>Jane is our restaurant manager who ensures everything runs smoothly. Her organizational skills and attention to detail are unmatched.</p>
+                </div>
+            </div>
+            <div class="staff-card">
+                <img src="staff3.jpg" alt="Staff Member 3" class="staff-image">
+                <div class="staff-info">
+                    <h2>Emily Johnson</h2>
+                    <p>Emily is our lead server, known for her exceptional customer service. She makes sure every guest has a pleasant dining experience.</p>
+                </div>
+            </div>
+            <div class="staff-card">
+                <img src="staff4.jpg" alt="Staff Member 4" class="staff-image">
+                <div class="staff-info">
+                    <h2>Michael Brown</h2>
+                    <p>Michael is our sommelier who selects the finest wines to complement our menu. His expertise enhances every dining experience.</p>
+                </div>
+            </div>
+            <!-- Add more staff cards as needed -->
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="home.html" class="btn">Back to Home</a>
+        </div>
+    </main>
+</body>
+
+</html>

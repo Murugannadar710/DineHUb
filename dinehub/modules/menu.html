@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #800000, #000000);
+            color: #fff;
+        }
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #f8b400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .dish {
+            background: #222;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .dish:hover {
+            transform: scale(1.02);
+            background-color: #333;
+        }
+        .dish img {
+            max-width: 150px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .dish:hover img {
+            transform: rotate(-5deg);
+        }
+        .dish-details {
+            flex: 1;
+            margin-left: 30px;
+            color: #ddd;
+        }
+        .dish-details h3 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #f8b400;
+        }
+        .dish-details p {
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+        .dish-details .price {
+            font-size: 1.4em;
+            color: #f8b400;
+            font-weight: bold;
+        }
+        .dish-buttons {
+            display: flex;
+            flex-direction: column;
+        }
+        .dish-buttons button {
+            background-color: #f8b400;
+            border: none;
+            color: #222;
+            padding: 12px 20px;
+            margin: 5px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .dish-buttons button:hover {
+            background-color: #e09b00;
+            transform: translateY(-3px);
+        }
+        .quantity-dropdown {
+            padding: 10px;
+            font-size: 1em;
+            margin: 5px 0;
+            border-radius: 8px;
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #f8b400;
+        }
+        .quantity-dropdown option {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Our Menu</h1>
+
+        <div class="dish">
+            <img src="img/Spaghetti Carbonara.jpg" alt="Spaghetti Carbonara">
+            <div class="dish-details">
+                <h3>Spaghetti Carbonara</h3>
+                <p>A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper. Creamy and delicious.</p>
+                <div class="price">₹1299</div>
+            </div>
+            <div class="dish-buttons">
+                <select name="Spaghetti_Carbonara_quantity" class="quantity-dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button onclick="buyNow('Spaghetti Carbonara', '1299', 'A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper. Creamy and delicious.', 'dish1.jpg')">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="img/Grilled Chicken.jpg" alt="Grilled Chicken">
+            <div class="dish-details">
+                <h3>Grilled Chicken</h3>
+                <p>Perfectly grilled chicken with a blend of herbs and spices, served with fresh vegetables.</p>
+                <div class="price">₹1549</div>
+            </div>
+            <div class="dish-buttons">
+                <select name="Grilled_Chicken_quantity" class="quantity-dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button onclick="buyNow('Grilled Chicken', '1549', 'Perfectly grilled chicken with a blend of herbs and spices, served with fresh vegetables.', 'dish2.jpg')">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="img/Vegetarian Pizza.jpg" alt="Vegetarian Pizza">
+            <div class="dish-details">
+                <h3>Vegetarian Pizza</h3>
+                <p>A delicious pizza topped with fresh vegetables, cheese, and a rich tomato sauce.</p>
+                <div class="price">₹1099</div>
+            </div>
+            <div class="dish-buttons">
+                <select name="Vegetarian_Pizza_quantity" class="quantity-dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button onclick="buyNow('Vegetarian Pizza', '1099', 'A delicious pizza topped with fresh vegetables, cheese, and a rich tomato sauce.', 'dish3.jpg')">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="dish">
+            <img src="img/Seafood Paella.jpg" alt="Seafood Paella">
+            <div class="dish-details">
+                <h3>Seafood Paella</h3>
+                <p>A vibrant Spanish rice dish with fresh seafood, saffron, and a mix of spices.</p>
+                <div class="price">₹1899</div>
+            </div>
+            <div class="dish-buttons">
+                <select name="Seafood_Paella_quantity" class="quantity-dropdown">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button onclick="buyNow('Seafood Paella', '1899', 'A vibrant Spanish rice dish with fresh seafood, saffron, and a mix of spices.', 'dish4.jpg')">Buy Now</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+    function buyNow(dishName, price, description, imageUrl) {
+        // Find the select element by name
+        let selectElement = document.querySelector(`select[name='${dishName.replace(/ /g, '_')}_quantity']`);
+        
+        // Check if the select element exists
+        if (!selectElement) {
+            alert("Quantity dropdown not found.");
+            return;
+        }
+        
+        let quantity = selectElement.value;
+        
+        // Display a confirmation popup
+        alert(`You have selected to buy ${quantity} of ${dishName} for ₹${price}.`);
+
+        // Prepare data to send to the server
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "store_order.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Redirect to order.html if the request is successful
+                    window.location.href = "order.html";
+                } else {
+                    // Handle errors
+                    alert("An error occurred: " + xhr.statusText);
+                }
+            }
+        };
+
+        let data = `dish_name=${encodeURIComponent(dishName)}&description=${encodeURIComponent(description)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&image_url=${encodeURIComponent(imageUrl)}`;
+        xhr.send(data);
+    }
+    </script>    
+</body>
+</html>

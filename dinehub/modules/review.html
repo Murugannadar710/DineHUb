@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | DineHub</title>
+    <link rel="stylesheet" href="review.css"> <!-- Ensure this CSS file exists -->
+    <style>
+        /* Vibrant animated gradient background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff0099, #493240, #00d2ff, #fc00ff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+            transform: translateY(-4px);
+        }
+
+        h1 {
+            color: #e1e1e1;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            transition: color 0.3s ease;
+        }
+
+        h1:hover {
+            color: #f1c40f;
+        }
+
+        .review {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review:hover {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .review h3 {
+            margin-top: 0;
+            color: #f1c40f;
+            font-size: 1.4em;
+            transition: color 0.3s ease;
+        }
+
+        .review h3:hover {
+            color: #e67e22;
+        }
+
+        .review p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .review small {
+            display: block;
+            color: #bbb;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-home-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .back-home-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Reviews</h1>
+        <div id="reviewsContainer">
+            <!-- Reviews will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Back to Home Button -->
+    
+    </div>
+
+    <script>
+        // Function to fetch and display reviews
+        function loadReviews() {
+            fetch('review.php')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('reviewsContainer').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching reviews:', error);
+                    document.getElementById('reviewsContainer').innerHTML = '<p>Unable to load reviews. Please try again later.</p>';
+                });
+        }
+
+        // Load reviews on page load
+        document.addEventListener('DOMContentLoaded', loadReviews);
+    </script>
+</body>
+</html>

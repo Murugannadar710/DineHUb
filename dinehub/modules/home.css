@@ -1,0 +1,225 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2c003e, #000000); /* Maroon/black gradient background */
+    color: #f5f5f5; /* Light text color */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll; /* Add vertical scrollbar */
+}
+
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    background: linear-gradient(135deg, #6d1f3f, #4b001f); /* Dark maroon gradient */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center; /* Center the header content */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column; /* Stack logo and menu vertically */
+    align-items: center; /* Center horizontally */
+}
+
+.logo {
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 15px; /* Space between logo and menu */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: row; /* Align menu items horizontally */
+    gap: 25px; /* Space between menu items */
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-grad {
+    padding: 10px 20px; /* Adjust padding for button size */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    color: white; /* Text color */
+    font-weight: bold; /* Bold text */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    background: linear-gradient(135deg, #FF416C, #FF4B2B); /* Gradient background */
+    transition: background 0.3s ease, transform 0.3s ease; /* Transition effects */
+}
+
+.btn-grad:hover {
+    background: linear-gradient(135deg, #FF4B2B, #FF416C); /* Reverse gradient on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.btn-grad:focus {
+    outline: none; /* Remove outline on focus */
+}
+
+
+.nav-links a:hover {
+    color: #ffbc00; /* Light gold for hover effect */
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+main {
+    padding: 40px;
+    text-align: center; /* Center the content */
+}
+
+h1 {
+    margin-bottom: 40px;
+    color: #ffbc00;
+    font-size: 40px; /* Larger title */
+    letter-spacing: 2px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 30px; /* Space between cards */
+    justify-content: center; /* Center the grid */
+    align-items: start; /* Align items to the start */
+    max-width: 1200px; /* Ensure it doesn't exceed the max width */
+    margin: 0 auto; /* Center the grid within the container */
+    animation: fadeIn 2s ease-in-out; /* Fade-in effect */
+}
+
+.card {
+    background: linear-gradient(135deg, #1a1a1a, #333333); /* Dark gradient for cards */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Animation effects */
+    position: relative; /* Needed for pseudo-element */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color from parent */
+    height: 300px; /* Fixed height */
+    width: 100%; /* Full width */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly enlarge card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #2c003e, #333333); /* Slightly different gradient on hover */
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #ffbc00;
+    font-size: 26px;
+    transition: color 0.3s ease;
+}
+
+.card:hover h2 {
+    color: #fff; /* Change text color on hover */
+}
+
+.card p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ddd; /* Light text for paragraph */
+    transition: color 0.3s ease;
+}
+
+.card:hover p {
+    color: #f5f5f5; /* Change text color on hover */
+}
+
+
+
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #ff6f61;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background: #d55d4a;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+footer {
+    background-color: #111;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0,0,0,0.3);
+}
+
+/* Responsiveness for smaller devices */
+@media (max-width: 600px) {
+    .card {
+        padding: 15px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Advanced Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

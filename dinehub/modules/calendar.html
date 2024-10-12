@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/main.min.css" rel="stylesheet">
+
+  <style>
+    /* Custom styles for calendar and reminder section */
+    #calendar {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .reminder-section {
+      margin-top: 20px;
+    }
+
+    .reminder-list {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calendar</h1>
+  <div id="calendar"></div>
+
+  <div class="reminder-section">
+    <h2>Set Reminder</h2>
+    <form id="reminder-form">
+      <label for="reminder-date">Date:</label>
+      <input type="date" id="reminder-date" required>
+      <label for="reminder-text">Reminder:</label>
+      <input type="text" id="reminder-text" required>
+      <button type="submit">Add Reminder</button>
+    </form>
+    <div class="reminder-list">
+      <h3>Upcoming Reminders</h3>
+      <ul id="reminder-list"></ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/main.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize FullCalendar
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: [], // Events will be added here
+        dateClick: function(info) {
+          alert('Date clicked: ' + info.dateStr);
+        }
+      });
+      calendar.render();
+
+      // Fetch reservations data
+      fetch('reservations.html')
+        .then(response => response.text())
+        .then(data => {
+          // Mocked reservation data
+          const reservations = [
+            { title: 'Reservation 1', start: '2024-09-05' },
+            { title: 'Reservation 2', start: '2024-09-12' }
+          ];
+
+          // Add reservations to calendar
+          calendar.addEventSource(reservations);
+
+          // Highlight reservation dates
+          reservations.forEach(reservation => {
+            const date = reservation.start;
+            calendar.getEventSourceById(date)?.setProp('backgroundColor', 'red');
+          });
+        })
+        .catch(error => console.error('Error fetching reservations:', error));
+
+      // Reminder functionality
+      const reminderForm = document.getElementById('reminder-form');
+      const reminderList = document.getElementById('reminder-list');
+
+      reminderForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const date = document.getElementById('reminder-date').value;
+        const text = document.getElementById('reminder-text').value;
+
+        if (date && text) {
+          const listItem = document.createElement('li');
+          listItem.textContent = `${date}: ${text}`;
+          reminderList.appendChild(listItem);
+
+          // Clear form inputs
+          reminderForm.reset();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

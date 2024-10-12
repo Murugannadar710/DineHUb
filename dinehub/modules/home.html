@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineHub - Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1><a href="index.html" class="logo">DineHub</a></h1>
+                <ul class="nav-links">
+                    <li><a href="about.html">About</a></li>
+                    <button class="btn-grad" 
+                    onclick="logout()" 
+                    style="padding: 10px 20px; 
+                           border: none; 
+                           border-radius: 5px; 
+                           color: white; 
+                           font-weight: bold; 
+                           font-size: 16px; 
+                           cursor: pointer; 
+                           background: linear-gradient(135deg, #FF416C, #FF4B2B); 
+                           transition: background 0.3s ease, transform 0.3s ease;" 
+                    onmouseover="this.style.background='linear-gradient(135deg, #FF4B2B, #FF416C)'; this.style.transform='scale(1.05)';" 
+                    onmouseout="this.style.background='linear-gradient(135deg, #FF416C, #FF4B2B)'; this.style.transform='scale(1)';">
+                    Logout
+                </button>
+                                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        function logout() {
+            // Display a confirmation alert
+            if (confirm("Are you sure you want to logout?")) {
+                // Clear user session data (if applicable)
+                localStorage.removeItem('userToken'); // Example for token storage
+                // Redirect to the correct login page path
+                window.location.href = '/dinehub/login.html'; // Adjusted path based on your directory structure
+            }
+        }
+    </script>
+    
+
+    <main>
+        <div class="container">
+            <h1>Welcome to DineHub</h1>
+            <div class="dashboard">
+
+                <div class="card">
+                    <h2>Your Reservations</h2>
+                    <p>Manage and view all table reservations.</p>
+                    <a href="reservations.html" class="btn">Manage Reservations</a>
+                </div>
+
+                <div class="card">
+                    <h2>Our Menu</h2>
+                    <p>Update and organize your restaurant's menu items.</p>
+                    <a href="menu.html" class="btn">Manage Menu</a>
+                </div>
+
+                <div class="card">
+                    <h2>Your Orders</h2>
+                    <p>Track and manage customer orders.</p>
+                    <a href="order.html" class="btn">Manage Orders</a>
+                </div>
+
+                <div class="card">
+                    <h2>About Our Staff</h2>
+                    <p>Manage staff roles and information.</p>
+                    <a href="staff.html" class="btn">Manage Staff</a>
+                </div>
+
+                <div class="card">
+                    <h2>Feedback</h2>
+                    <p>View and respond to customer feedback.</p>
+                    <a href="feedback.html" class="btn">View Feedback</a>
+                </div>
+
+                <div class="card">
+                    <h2>About Us</h2>
+                    <p>Learn more about our restaurant and its mission.</p>
+                    <a href="about.html" class="btn">About Us</a>
+                </div>
+
+                <div class="card">
+                    <h2>Customer Reviews</h2>
+                    <p>Read reviews from our customers.</p>
+                    <a href="review.html" class="btn">Read Reviews</a>
+                </div>
+
+                <div class="card">
+                    <h2>Your Profile</h2>
+                    <p>Manage your profile information.</p>
+                    <a href="profile.html" class="btn">Manage Profile</a>
+                </div>
+
+                <div class="card">
+                    <h2>Image Gallery</h2>
+                    <p>Upload and view your dining experience photos.</p>
+                    <a href="image.html" class="btn">Visit Gallery</a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

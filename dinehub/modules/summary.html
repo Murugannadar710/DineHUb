@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #800000, #000000);
+            color: #fff;
+        }
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #f8b400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #444;
+        }
+        th {
+            background-color: #333;
+            color: #f8b400;
+            font-size: 1.2em;
+        }
+        td {
+            background-color: #222;
+        }
+        img {
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.05);
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1.2em;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #f5a623;
+        }
+        .download-button {
+            background-color: #27ae60;
+        }
+        .download-button:hover {
+            background-color: #2ecc71;
+        }
+        .pay-now-button {
+            background-color: #007bff;
+        }
+        .pay-now-button:hover {
+            background-color: #0056b3;
+        }
+        .back-home-button {
+            background-color: #333;
+        }
+        .back-home-button:hover {
+            background-color: #555;
+        }
+        .back-menu-button {
+            background-color: #f8b400;
+        }
+        .back-menu-button:hover {
+            background-color: #e6a04d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Summary</h1>
+        <div id="order-summary"></div>
+        <div class="button-container">
+            <button class="button download-button" onclick="downloadPDF()">Download Bill</button>
+            <button class="button pay-now-button" onclick="payNow()">Pay Now</button>
+            <a href="home.html" class="button back-home-button">Back to Home</a>
+            <a href="menu.html" class="button back-menu-button">Back to Menu</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        function fetchOrderDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", `fetch_order.php?id=${orderId}`, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        try {
+                            let orderDetails = JSON.parse(xhr.responseText);
+                            resolve(orderDetails);
+                        } catch (e) {
+                            reject(e);
+                        }
+                    }
+                };
+                xhr.send();
+            });
+        }
+
+        function generateOrderSummary(orderDetails) {
+            let html = '<table>' +
+                '<tr><th>Dish Name</th><th>Description</th><th>Price</th><th>Quantity</th><th>Image</th></tr>';
+
+            let totalAmount = 0;
+
+            orderDetails.forEach(order => {
+                const amount = order.price * order.quantity;
+                totalAmount += amount;
+                html += '<tr>' +
+                    `<td>${order.dish_name}</td>` +
+                    `<td>${order.description}</td>` +
+                    `<td>${order.price}</td>` +
+                    `<td>${order.quantity}</td>` +
+                    `<td><img src="${order.image_url}" alt="${order.dish_name}" style="width:100px;"></td>` +
+                    '</tr>';
+            });
+
+            html += `<tr><td colspan="4">Total Amount</td><td>${totalAmount}</td></tr>`;
+            html += '</table>';
+
+            document.getElementById('order-summary').innerHTML = html;
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            fetchOrderDetails().then(orderDetails => {
+                let y = 10;
+                doc.text('Order Summary', 10, y);
+                y += 10;
+
+                orderDetails.forEach(order => {
+                    doc.text(`Dish Name: ${order.dish_name}`, 10, y);
+                    doc.text(`Description: ${order.description}`, 10, y + 10);
+                    doc.text(`Price: ${order.price}`, 10, y + 20);
+                    doc.text(`Quantity: ${order.quantity}`, 10, y + 30);
+                    y += 40;
+                });
+
+                doc.text(`Total Amount: ${orderDetails.reduce((sum, order) => sum + (order.price * order.quantity), 0)}`, 10, y);
+
+                doc.save('order-summary.pdf');
+            });
+        }
+
+        function payNow() {
+            fetchOrderDetails().then(orderDetails => {
+                const totalAmount = orderDetails.reduce((sum, order) => sum + (order.price * order.quantity), 0);
+
+                var options = {
+                    "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+                    "amount": totalAmount * 100, // Amount in paise
+                    "currency": "INR",
+                    "name": "Your Company Name",
+                    "description": "Order Payment",
+                    "handler": function (response) {
+                        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                        // Handle the response from Razorpay
+                    },
+                    "prefill": {
+                        "name": "Customer Name",
+                        "email": "customer@example.com",
+                        "contact": "9999999999"
+                    },
+                    "theme": {
+                        "color": "#007bff"
+                    }
+                };
+
+                var paymentObject = new Razorpay(options);
+                paymentObject.open();
+            });
+        }
+
+        window.onload = function () {
+            fetchOrderDetails().then(orderDetails => generateOrderSummary(orderDetails));
+        };
+    </script>
+</body>
+</html>
